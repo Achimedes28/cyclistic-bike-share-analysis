@@ -1,4 +1,5 @@
 [![Tableau Dashboard](https://img.shields.io/badge/Tableau-View_Dashboard-blue)](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
+[![Presentation](https://img.shields.io/badge/Presentation-View_PDF-red)](presentation/cyclistic_case_study.pdf)
 
 # Cyclistic Bike-Share Analysis
 
@@ -83,6 +84,7 @@ The final dashboard is available in:
 
 ## Presentation
 
+- [View the case study presentation](presentation/cyclistic_case_study.pdf)
 - [Download the PowerPoint](presentation/cyclistic_case_study.pptx)
 
 ## Project Files
