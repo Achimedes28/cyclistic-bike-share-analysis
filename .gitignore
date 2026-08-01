@@ -216,3 +216,29 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Raw and processed datasets
+data/raw/
+data/processed/
+
+# Large CSV files
+*.csv
+
+# Allow aggregated summary CSV files
+!data/summary/*.csv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Tableau extracts and temporary files
+*.hyper
+*.tfl
+*.tflx
