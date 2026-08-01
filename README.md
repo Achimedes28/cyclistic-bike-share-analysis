@@ -1,3 +1,5 @@
+[![Tableau Dashboard](https://img.shields.io/badge/Tableau-View_Dashboard-blue)](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
+
 # Cyclistic Bike-Share Analysis
 
 ![Cyclistic Dashboard](dashboard/cyclistic_dashboard.png)
@@ -74,11 +76,13 @@ Developed data-backed marketing recommendations to support membership conversion
 The final dashboard is available in:
 
 - [Dashboard screenshot](dashboard/cyclistic_dashboard.png)
-- Tableau Public link: https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link
+
+## Interactive Dashboard
+
+[View the interactive Tableau dashboard](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
 
 ## Presentation
 
-- [View the case study presentation](presentation/cyclistic_case_study.pdf)
 - [Download the PowerPoint](presentation/cyclistic_case_study.pptx)
 
 ## Project Files
