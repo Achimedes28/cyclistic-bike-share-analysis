@@ -74,7 +74,7 @@ Developed data-backed marketing recommendations to support membership conversion
 The final dashboard is available in:
 
 - [Dashboard screenshot](dashboard/cyclistic_dashboard.png)
-- Tableau Public link: **Coming soon**
+- Tableau Public link: https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link
 
 ## Presentation
 
