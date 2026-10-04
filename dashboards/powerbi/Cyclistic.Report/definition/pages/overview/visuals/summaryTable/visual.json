@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "summaryTable",
+  "position": {
+    "x": 440.0,
+    "y": 478,
+    "z": 11000,
+    "height": 222,
+    "width": 400.0,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Year"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "Year.Year",
+              "nativeQueryRef": "Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Rider Type"
+                    }
+                  },
+                  "Property": "Rider Type"
+                }
+              },
+              "queryRef": "Rider Type.Rider Type",
+              "nativeQueryRef": "Rider",
+              "displayName": "Rider"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Key Measures"
+                    }
+                  },
+                  "Property": "Total Rides"
+                }
+              },
+              "queryRef": "Key Measures.Total Rides",
+              "nativeQueryRef": "Rides",
+              "displayName": "Rides"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Key Measures"
+                    }
+                  },
+                  "Property": "Avg Ride (min)"
+                }
+              },
+              "queryRef": "Key Measures.Avg Ride (min)",
+              "nativeQueryRef": "Avg min",
+              "displayName": "Avg min"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Key Measures"
+                    }
+                  },
+                  "Property": "Median Ride (min)"
+                }
+              },
+              "queryRef": "Key Measures.Median Ride (min)",
+              "nativeQueryRef": "Median min",
+              "displayName": "Median min"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Year"
+                  }
+                },
+                "Property": "Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Q1 summary'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

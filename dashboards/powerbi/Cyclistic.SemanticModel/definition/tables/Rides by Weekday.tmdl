@@ -1,0 +1,66 @@
+table 'Rides by Weekday'
+
+	column Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Year
+
+	column 'Rider Key'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Rider Key
+
+	column 'Day Name'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Day Name
+
+	column 'Weekday Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Weekday Order
+
+	column Day
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Day
+		sortByColumn: 'Weekday Order'
+
+	column 'Ride Count'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: Ride Count
+
+	column 'Avg Ride Length (min)'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: Avg Ride Length (min)
+
+	partition 'Rides by Weekday' = m
+		mode: import
+		source = ```
+				let
+					Source = Csv.Document(
+						Web.Contents(DataSourceUrl, [RelativePath = "summary_by_weekday.csv"]),
+						[Delimiter = ",", Columns = 8, Encoding = 65001, QuoteStyle = QuoteStyle.None]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"year", Int64.Type}, {"day_of_week", Int64.Type}, {"day_name", type text}, {"member_casual", type text}, {"ride_count", Int64.Type}, {"average_ride_length_minutes", type number}, {"median_ride_length_minutes", type number}, {"ride_share_percent", type number}}, "en-US"),
+					Renamed = Table.RenameColumns(Typed, {{"year", "Year"}, {"day_name", "Day Name"}, {"member_casual", "Rider Key"}, {"ride_count", "Ride Count"}, {"average_ride_length_minutes", "Avg Ride Length (min)"}}),
+					// Source uses Sunday = 1; reorder so the week starts on Monday
+					WithOrder = Table.AddColumn(Renamed, "Weekday Order", each if [day_of_week] = 1 then 7 else [day_of_week] - 1, Int64.Type),
+					WithDay = Table.AddColumn(WithOrder, "Day", each Text.Start([Day Name], 3), type text),
+					Result = Table.SelectColumns(WithDay, {"Year", "Rider Key", "Day Name", "Weekday Order", "Day", "Ride Count", "Avg Ride Length (min)"})
+				in
+					Result
+				```

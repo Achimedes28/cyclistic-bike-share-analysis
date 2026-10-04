@@ -1,11 +1,11 @@
 # Summary Data
 
-This folder contains aggregated outputs generated from the cleaned Divvy trip dataset.
+Aggregated outputs from the cleaned Divvy trip data. The Power BI and Tableau dashboards read these files.
 
-Files:
+| File | Grain | Columns |
+|---|---|---|
+| `summary_by_rider_year.csv` | year × rider type | rides, average and median ride length |
+| `summary_by_weekday.csv` | year × weekday × rider type | rides, average and median ride length, share of rides |
+| `summary_by_hour.csv` | year × start hour × rider type | rides, average ride length |
 
-- `summary_by_rider_year.csv`
-- `summary_by_weekday.csv`
-- `summary_by_hour.csv`
-
-The complete raw and cleaned trip-level datasets are not redistributed in this repository.
+Raw and cleaned trip-level data are not redistributed in this repository.

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "weekdayChart",
+  "position": {
+    "x": 24,
+    "y": 200,
+    "z": 8000,
+    "height": 262,
+    "width": 608.0,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Rides by Weekday"
+                    }
+                  },
+                  "Property": "Day"
+                }
+              },
+              "queryRef": "Rides by Weekday.Day",
+              "nativeQueryRef": "Day"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Rider Type"
+                    }
+                  },
+                  "Property": "Rider Type"
+                }
+              },
+              "queryRef": "Rider Type.Rider Type",
+              "nativeQueryRef": "Rider Type"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Key Measures"
+                    }
+                  },
+                  "Property": "Weekday Share"
+                }
+              },
+              "queryRef": "Key Measures.Weekday Share",
+              "nativeQueryRef": "Share of weekly rides",
+              "displayName": "Share of weekly rides"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Rides by Weekday"
+                  }
+                },
+                "Property": "Day"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Casual riders favour weekends: % of weekly rides'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,29 @@
+table 'Rider Type'
+
+	column 'Rider Key'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Rider Key
+
+	column 'Rider Type'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Rider Type
+		sortByColumn: 'Rider Order'
+
+	column 'Rider Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Rider Order
+
+	partition 'Rider Type' = m
+		mode: import
+		source = ```
+				#table(
+					type table [Rider Key = text, Rider Type = text, Rider Order = Int64.Type],
+					{{"member", "Member", 1}, {"casual", "Casual", 2}}
+				)
+				```

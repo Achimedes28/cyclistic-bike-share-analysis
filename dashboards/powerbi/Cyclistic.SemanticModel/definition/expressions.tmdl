@@ -1,0 +1,3 @@
+/// Base URL of the aggregated CSV files. Point it to a local folder path if you prefer working offline.
+expression DataSourceUrl = "https://raw.githubusercontent.com/Achimedes28/cyclistic-bike-share-analysis/main/data/summary/" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	annotation PBI_ResultType = Text

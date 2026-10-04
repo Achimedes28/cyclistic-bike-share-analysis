@@ -1,0 +1,23 @@
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a01
+	fromColumn: 'Rider Summary'.'Rider Key'
+	toColumn: 'Rider Type'.'Rider Key'
+
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a02
+	fromColumn: 'Rider Summary'.Year
+	toColumn: Year.Year
+
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a03
+	fromColumn: 'Rides by Weekday'.'Rider Key'
+	toColumn: 'Rider Type'.'Rider Key'
+
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a04
+	fromColumn: 'Rides by Weekday'.Year
+	toColumn: Year.Year
+
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a05
+	fromColumn: 'Rides by Hour'.'Rider Key'
+	toColumn: 'Rider Type'.'Rider Key'
+
+relationship 7c1f0d2a-1b31-4d0e-9a51-0b5d8f3e2a06
+	fromColumn: 'Rides by Hour'.Year
+	toColumn: Year.Year

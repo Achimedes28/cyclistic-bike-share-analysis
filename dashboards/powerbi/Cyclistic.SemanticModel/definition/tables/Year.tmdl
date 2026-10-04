@@ -1,0 +1,11 @@
+table Year
+
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Year
+
+	partition Year = m
+		mode: import
+		source = #table(type table [Year = Int64.Type], {{2019}, {2020}})
