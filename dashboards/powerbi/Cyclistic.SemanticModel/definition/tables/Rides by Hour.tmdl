@@ -1,0 +1,50 @@
+table 'Rides by Hour'
+
+	column Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Year
+
+	column 'Start Hour'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Start Hour
+
+	column 'Rider Key'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: Rider Key
+
+	column 'Ride Count'
+		dataType: int64
+		isHidden
+		formatString: #,0
+		summarizeBy: sum
+		sourceColumn: Ride Count
+
+	column 'Avg Ride Length (min)'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		summarizeBy: none
+		sourceColumn: Avg Ride Length (min)
+
+	partition 'Rides by Hour' = m
+		mode: import
+		source = ```
+				let
+					Source = Csv.Document(
+						Web.Contents(DataSourceUrl, [RelativePath = "summary_by_hour.csv"]),
+						[Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.None]
+					),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+					Typed = Table.TransformColumnTypes(Promoted, {{"year", Int64.Type}, {"start_hour", Int64.Type}, {"member_casual", type text}, {"ride_count", Int64.Type}, {"average_ride_length_minutes", type number}}, "en-US"),
+					Renamed = Table.RenameColumns(Typed, {{"year", "Year"}, {"start_hour", "Start Hour"}, {"member_casual", "Rider Key"}, {"ride_count", "Ride Count"}, {"average_ride_length_minutes", "Avg Ride Length (min)"}}),
+					Result = Renamed
+				in
+					Result
+				```

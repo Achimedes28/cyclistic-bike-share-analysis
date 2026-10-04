@@ -19,6 +19,7 @@ The analysis is a Q1 year-over-year comparison and does not represent a complete
 - Python
 - Pandas
 - Google Colab
+- Power BI Desktop (Power Query, DAX)
 - Tableau Public
 - Microsoft PowerPoint
 

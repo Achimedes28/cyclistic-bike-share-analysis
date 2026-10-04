@@ -1,0 +1,77 @@
+// Cyclistic Power BI dashboard: DAX measures (table 'Key Measures')
+// Source of truth: Cyclistic.SemanticModel/definition/tables/Key Measures.tmdl
+
+[Total Rides] =
+    SUM ( 'Rider Summary'[Ride Count] )
+// format: #,0
+
+[Member Rides] =
+    CALCULATE ( [Total Rides], 'Rider Type'[Rider Type] = "Member" )
+// format: #,0
+
+[Casual Rides] =
+    CALCULATE ( [Total Rides], 'Rider Type'[Rider Type] = "Casual" )
+// format: #,0
+
+[Member Share] =
+    DIVIDE ( [Member Rides], [Total Rides] )
+// format: 0.0%
+
+[Rides YoY %] =
+    VAR _year = SELECTEDVALUE ( 'Year'[Year] )
+    VAR _current = [Total Rides]
+    VAR _previous = CALCULATE ( [Total Rides], 'Year'[Year] = _year - 1 )
+    RETURN
+        IF ( NOT ISBLANK ( _previous ), DIVIDE ( _current - _previous, _previous ) )
+// format: +0.0%;-0.0%;0.0%
+
+[Avg Ride (min)] =
+    DIVIDE (
+        SUMX ( 'Rider Summary', 'Rider Summary'[Ride Count] * 'Rider Summary'[Avg Ride Length (min)] ),
+        [Total Rides]
+    )
+// format: 0.0
+
+[Median Ride (min)] =
+    -- Medians are not additive: only defined for one rider type in one year
+    IF (
+        HASONEVALUE ( 'Rider Type'[Rider Type] ) && HASONEVALUE ( 'Year'[Year] ),
+        MAX ( 'Rider Summary'[Median Ride Length (min)] )
+    )
+// format: 0.0
+
+[Median Ride Member (min)] =
+    CALCULATE ( [Median Ride (min)], 'Rider Type'[Rider Type] = "Member" )
+// format: 0.0
+
+[Median Ride Casual (min)] =
+    CALCULATE ( [Median Ride (min)], 'Rider Type'[Rider Type] = "Casual" )
+// format: 0.0
+
+[Weekday Rides] =
+    SUM ( 'Rides by Weekday'[Ride Count] )
+// format: #,0
+
+[Weekday Share] =
+    -- Share of a rider group's weekly rides that fall on each day
+    DIVIDE (
+        [Weekday Rides],
+        CALCULATE (
+            [Weekday Rides],
+            REMOVEFILTERS ( 'Rides by Weekday'[Day], 'Rides by Weekday'[Day Name], 'Rides by Weekday'[Weekday Order] )
+        )
+    )
+// format: 0.0%
+
+[Hourly Rides] =
+    SUM ( 'Rides by Hour'[Ride Count] )
+// format: #,0
+
+[Hourly Share] =
+    -- Share of a rider group's daily rides that start in each hour
+    DIVIDE (
+        [Hourly Rides],
+        CALCULATE ( [Hourly Rides], REMOVEFILTERS ( 'Rides by Hour'[Start Hour] ) )
+    )
+// format: 0.0%
+

@@ -1,109 +1,71 @@
-[![Tableau Dashboard](https://img.shields.io/badge/Tableau-View_Dashboard-blue)](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
-[![Presentation](https://img.shields.io/badge/Presentation-View_PDF-red)](presentation/cyclistic_case_study.pdf)
-
 # Cyclistic Bike-Share Analysis
 
-![Cyclistic Dashboard](dashboard/cyclistic_dashboard.png)
+How do annual members and casual riders use Cyclistic bikes differently, and how can that turn more casual riders into members?
 
-## Project Overview
+[![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811?logo=powerbi&logoColor=black)](dashboards/powerbi/)
+[![Tableau](https://img.shields.io/badge/Tableau-Dashboard-E97627?logo=tableau&logoColor=white)](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
+[![Presentation](https://img.shields.io/badge/Slides-PDF-555555)](presentation/cyclistic_case_study.pdf)
+[![Python](https://img.shields.io/badge/Python-pandas-3776AB?logo=python&logoColor=white)](notebooks/cyclistic_bike_share_analysis.ipynb)
 
-This portfolio project analyzes Divvy bike-share trip data from Q1 2019 and Q1 2020 to understand how annual members and casual riders use the service differently.
+![Power BI dashboard](dashboards/powerbi/preview.png)
 
-The analysis follows the Ask, Prepare, Process, Analyze, Share, and Act framework.
+## Key findings
 
-## Business Task
+| | Members | Casual riders |
+|---|---|---|
+| Share of Q1 2020 rides | 88.6% | 11.4% |
+| Median ride length (Q1 2020) | 8.6 min | 21.2 min |
+| Busiest day (Q1 2020) | Tuesday | Sunday |
+| Busiest start hours | 8 AM and 5 PM | 2 PM to 4 PM |
 
-How do annual members and casual riders use Cyclistic bikes differently, and how can the findings support strategies to convert casual riders into annual members?
-
-## Data Scope
-
-- Divvy Q1 2019 trip data
-- Divvy Q1 2020 trip data
-- Approximately 792,000 analyzed ride records
-- Q1 year-over-year comparison
-
-> This project does not represent a complete annual or seasonal analysis.
-
-## Tools
-
-- Python
-- Pandas
-- Google Colab
-- Google Sheets
-- Tableau
-- Microsoft PowerPoint
-
-## Analysis Process
-
-### Ask
-
-Defined the business objective and identified the primary stakeholders.
-
-### Prepare
-
-Reviewed the dataset structure, scope, credibility, licensing, and limitations.
-
-### Process
-
-Standardized the 2019 and 2020 schemas, aligned rider categories, converted datetime fields, created analytical variables, and combined both datasets.
-
-### Analyze
-
-Compared ride volume, ride duration, weekday behavior, and hourly usage patterns between members and casual riders.
-
-### Share
-
-Created an executive Tableau dashboard and PowerPoint presentation.
-
-### Act
-
-Developed data-backed marketing recommendations to support membership conversion.
-
-## Key Findings
-
-1. Members generated the majority of recorded rides.
-2. Casual riders took longer rides on average.
-3. Casual usage was more concentrated on weekends.
-4. Member rides showed stronger morning and evening usage peaks.
+1. Members take most rides and use bikes for short weekday commutes.
+2. Casual riders take rides 2 to 3 times longer, mostly on weekends and in the afternoon.
+3. Total Q1 rides grew 16.9% from 2019 to 2020, and casual rides more than doubled.
 
 ## Recommendations
 
-1. Launch weekend-focused membership campaigns.
-2. Promote membership value after longer casual rides.
-3. Test segmented digital campaigns based on rider behavior and usage time.
+1. **Weekend membership offers.** Target casual riders on Saturdays and Sundays, when their usage peaks.
+2. **Convert long rides.** Show the membership savings after rides that exceed a set length.
+3. **Segmented digital campaigns.** Time messages to the hours and days each group actually rides.
 
-## Dashboard
+## Data
 
-The final dashboard is available in:
+- Public Divvy trip data for Q1 2019 and Q1 2020 (about 792,000 rides after cleaning).
+- Raw trip files are not redistributed. The repository keeps only aggregated outputs in [`data/summary/`](data/summary/).
+- Q1 only, so results are not a full-year or seasonal view.
 
-- [Dashboard screenshot](dashboard/cyclistic_dashboard.png)
+## Approach
 
-## Interactive Dashboard
+| Step | Work |
+|---|---|
+| Ask | Defined the business question and stakeholders |
+| Prepare | Reviewed schema, credibility, licensing, and limits of the data |
+| Process | Aligned 2019 and 2020 schemas and rider labels, derived ride length, weekday, and hour ([methodology](docs/methodology.md)) |
+| Analyze | Compared volume, duration, weekday, and hourly patterns in Python |
+| Share | Built [Power BI](dashboards/powerbi/) and [Tableau](dashboards/tableau/) dashboards and an [executive deck](presentation/cyclistic_case_study.pdf) |
+| Act | Turned findings into three membership-conversion recommendations |
 
-[View the interactive Tableau dashboard](https://public.tableau.com/shared/ZF6PXPNS3?:display_count=n&:origin=viz_share_link)
+**Tools:** Python (pandas) · Google Colab · Google Sheets · Power BI (Power Query, DAX) · Tableau · PowerPoint
 
-## Presentation
+## Repository
 
-- [View the case study presentation](presentation/cyclistic_case_study.pdf)
-- [Download the PowerPoint](presentation/cyclistic_case_study.pptx)
-
-## Project Files
-
-- [`notebooks/`](notebooks/) — Python analysis notebook
-- [`data/summary/`](data/summary/) — Aggregated analytical outputs
-- [`dashboard/`](dashboard/) — Tableau dashboard screenshot
-- [`presentation/`](presentation/) — Executive presentation
-- [`docs/`](docs/) — Methodology and documentation
+```
+├── data/summary/        aggregated CSV outputs used by the dashboards
+├── notebooks/           cleaning and analysis notebook
+├── dashboards/
+│   ├── powerbi/         Power BI Project (.pbip), DAX measures, theme
+│   └── tableau/         Tableau dashboard screenshot and link
+├── presentation/        executive case study (PDF and PPTX)
+└── docs/                methodology
+```
 
 ## Limitations
 
-- The datasets cover Q1 2019 and Q1 2020 only.
-- Trip purposes are not directly recorded.
-- Weather, pricing, and campaign data were not included.
-- No rider-level identifier was available for tracking repeat users.
+- Covers Q1 2019 and Q1 2020 only.
+- Trip purpose, weather, pricing, and campaign data are not available.
+- No rider ID, so repeat usage by the same person cannot be tracked.
+- A few very long casual trips inflate averages, so medians are used for comparisons.
 
 ## Disclaimer
 
-This is an independent educational portfolio project. It is not affiliated with or endorsed by Divvy, Lyft, or the City of Chicago.
-
-The original source datasets are not redistributed in this repository.
+Independent educational portfolio project, not affiliated with or endorsed by Divvy, Lyft, or the City of Chicago.
