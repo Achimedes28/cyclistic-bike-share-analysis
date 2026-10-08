@@ -64,7 +64,8 @@ How do annual members and casual riders use Cyclistic bikes differently, and how
 - Covers Q1 2019 and Q1 2020 only.
 - Trip purpose, weather, pricing, and campaign data are not available.
 - No rider ID, so repeat usage by the same person cannot be tracked.
-- A few very long casual trips inflate averages, so medians are used for comparisons.
+- A few very long casual trips inflate averages (the 2020 casual average is 95.8 minutes against a median of 21.2), so medians are used for comparisons.
+- Trips with a negative duration and Divvy test rides (station "HQ QR") were not removed; see [methodology](docs/methodology.md).
 
 ## Disclaimer
 

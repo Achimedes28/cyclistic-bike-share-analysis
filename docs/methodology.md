@@ -56,9 +56,11 @@ The final dataset was checked for:
 - correct datetime conversion
 - consistent rider categories
 - consistent column names
-- missing values
-- duplicate or invalid records
-- row count after concatenation
+- missing values (rows with missing values were dropped)
+
+Not yet done: the notebook does not remove trips with a negative or zero duration or Divvy's internal test
+trips (station "HQ QR"). They mainly affect casual averages in 2020; for example, casual rides starting at 4 AM
+average more than 20 hours. Comparisons therefore use medians, and the averages should be read with care.
 
 ## Analysis
 
